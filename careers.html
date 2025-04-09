@@ -1,18 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Careers at Starlane Travels</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Starlane Travels - Explore Kerala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Sriracha&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Sriracha&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lilita+One&family=Sriracha&display=swap" rel="stylesheet">
+  <meta name="color-scheme" content="light">
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+    (function(){
+      emailjs.init({
+        publicKey: "Jl306RdMW69w5gK_-", // Your EmailJS User ID
+      });
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
-<nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="packages.html">Packages</a>
-    <a href="contact.html">Contact</a>
-    <a href="careers.html">Careers</a>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">Starlane Travel</div>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="contact.html">Contact</a>
+        <a href="careers.html">Careers</a>
+      </div>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="nav-links"
+      >
+        &#9776;
+      </button>
+    </div>
   </nav>
+  
+
 <body class="careers">
     <h2>Join Our Team</h2>
     <p>We're always on the lookout for passionate professionals. Explore our latest job openings below:</p>
@@ -22,7 +57,47 @@
     </div>
     
     <p><em>To apply, send your resume to <a href="mailto:careers@starlanetravels.in">careers@starlanetravels.in</a></em></p>
+    <div id="apply-form-container" style="display: none;">
+      <div id="apply-form">
+        <h3>Apply for Job</h3>
+        <form id="application-form">
+          <label for="job-title">Job Title:</label>
+          <input type="text" id="job-title" name="job-title" readonly />
     
+          <label for="job-location">Location:</label>
+          <input type="text" id="job-location" name="job-location" readonly />
+    
+          <label for="job-type">Type:</label>
+          <input type="text" id="job-type" name="job-type" readonly />
+    
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" name="name" required />
+    
+          <label for="address">Address:</label>
+          <textarea id="address" name="address" required></textarea>
+    
+          <label for="aadhar">Aadhaar Number:</label>
+          <input type="text" id="aadhar" name="aadhar" required />
+    
+          <label for="license">License Number:</label>
+          <input type="text" id="license" name="license" required />
+    
+          <label for="contact">Contact Number:</label>
+          <input type="text" id="contact" name="contact" required />
+    
+          <button type="submit">Submit Application</button>
+          <button type="button" id="close-form">Close</button>
+        </form>
+        <p id="success-message" style="display: none; color: green; margin-top: 10px;">Application submitted successfully! Please wait for consideration.</p>
+      </div>
+    </div>
+    
+    <div id="success-popup" style="display: none;">
+      <div class="popup-content">
+        <p>Application submitted successfully! Please wait for consideration.</p>
+        <button id="close-popup">Close</button>
+      </div>
+    </div>
 
   <script src="js/script.js"></script>
 
@@ -34,5 +109,19 @@
       <p>📧 <a href="mailto:info@starlanetravels.in">info@starlanetravels.in</a></p>
     </div>
   </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("nav-links");
+
+      hamburger.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+
+        const isActive = navLinks.classList.contains("active");
+        hamburger.innerHTML = isActive ? "&times;" : "&#9776;";
+        hamburger.setAttribute("aria-expanded", isActive);
+      });
+    });
+  </script>
 </body>
 </html>

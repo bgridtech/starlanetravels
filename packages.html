@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Travel Packages - Starlane Travels</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Starlane Travels - Explore Kerala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Sriracha&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Sriracha&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lilita+One&family=Sriracha&display=swap" rel="stylesheet">
+  <meta name="color-scheme" content="light">
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
   <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="packages.html">Packages</a>
-    <a href="contact.html">Contact</a>
+    <div class="nav-container">
+      <div class="logo">Starlane Travel</div>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="contact.html">Contact</a>
+        <a href="careers.html">Careers</a>
+      </div>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="nav-links"
+      >
+        &#9776;
+      </button>
+    </div>
   </nav>
-
 
   <section class="destinations">
     <h2>Top Destinations</h2>
@@ -196,9 +218,6 @@
 
   </section>
   
-  
-
-
   <footer class="footer">
     <div class="footer-box">
       <p>&copy; 2025 Starlane Travels | All rights reserved</p>
@@ -207,5 +226,19 @@
       <p><a href="mailto:info@starlanetravel.in">info@starlanetravel.in</a></p>
     </div>
   </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("nav-links");
+
+      hamburger.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+
+        const isActive = navLinks.classList.contains("active");
+        hamburger.innerHTML = isActive ? "&times;" : "&#9776;";
+        hamburger.setAttribute("aria-expanded", isActive);
+      });
+    });
+  </script>
 </body>
 </html>

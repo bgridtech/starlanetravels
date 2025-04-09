@@ -11,16 +11,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Sriracha&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lilita+One&family=Sriracha&display=swap" rel="stylesheet">
   <meta name="color-scheme" content="light">
-
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
+
   <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="packages.html">Packages</a>
-    <a href="contact.html">Contact</a>
-    <a href="careers.html">Careers</a>
+    <div class="nav-container">
+      <div class="logo">Starlane Travel</div>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="contact.html">Contact</a>
+        <a href="careers.html">Careers</a>
+      </div>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="nav-links"
+      >
+        &#9776;
+      </button>
+    </div>
   </nav>
+  
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="hero-overlay"></div>
@@ -237,7 +252,18 @@
   </footer>
 
   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("nav-links");
 
+      hamburger.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+
+        const isActive = navLinks.classList.contains("active");
+        hamburger.innerHTML = isActive ? "&times;" : "&#9776;";
+        hamburger.setAttribute("aria-expanded", isActive);
+      });
+    });
     function revealOnScroll() {
       const heroContent = document.querySelector('.hero-content');
       const heroSection = document.querySelector('.hero-section');
@@ -294,6 +320,8 @@
       slideshowContainer.addEventListener("mouseleave", startAutoSlide); // Resume on mouse leave
     });
     
+
+
   </script>
 </body>
 </html>
