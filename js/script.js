@@ -42,6 +42,44 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    const seasonalSheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2pf4zEEyMTGzny1jxnuDl8Oar364tuO1K4n4kj4vZRzOpfWzY0um_1TZG6Wo2__Onbh3a0CSY30GD/pub?output=csv";
+
+    Papa.parse(seasonalSheetURL, {
+      download: true,
+      header: true,
+      complete: function (results) {
+        const data = results.data;
+        const container = document.getElementById("seasonal-cards");
+    
+        if (!container) {
+          console.error("Container #seasonal-cards not found!");
+          return;
+        }
+    
+        if (!data || !data.length) {
+          container.innerHTML = "<p>No seasonal packages found.</p>";
+          return;
+        }
+    
+        data.forEach(pkg => {
+          if (!pkg["Package Name"]) return;
+    
+          const card = document.createElement("div");
+          card.className = "seasonal-card";
+          card.innerHTML = `
+            <img src="${pkg["Image URL"]}" alt="${pkg["Package Name"]}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+            <h3>${pkg["Package Name"]}</h3>
+            <p>${pkg["Best Season"]}</p>
+            <p>${pkg["Description"]}</p>
+            <p class="price">Price: ${pkg["Price"]}</p>
+        
+            <a href="https://wa.me/919961936593?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20the%20${encodeURIComponent(pkg["Package Name"])}%20seasonal%20package." target="_blank">Know More</a>
+          `;
+          container.appendChild(card);
+        });
+      }
+    });
+    
     emailjs.init("Jl306RdMW69w5gK_-"); // Initialize EmailJS with your user ID
 
     const form = document.getElementById("application-form");

@@ -156,6 +156,14 @@
     </div>
   </section>
 
+  <section class="seasonal-packages">
+    <h2>Best Seasonal Packages</h2>
+    <div class="seasonal-cards" id="best-seasonal-cards">
+      <!-- Top 3 rated cards will be inserted here -->
+    </div>
+  </section>
+  
+
   <section class="gallery">
     <h2>Gallery</h2>
     <div class="slideshow-container">
@@ -241,6 +249,27 @@
       <div class="card">💼 Professional Guidance</div>
     </div>
   </section>
+  <section class="testimonial-section">
+    <h2>Customer Testimonials</h2>
+    <div class="testimonial-card">
+      <p>“Excellent experience with Starlane Travels! The cab service was smooth and professional.”</p>
+      <h4>– Ameen Z., via Google</h4>
+    </div>
+    <div class="testimonial-card">
+      <p>“Highly recommended! Booked a package to Wayanad and everything was well coordinated.”</p>
+      <h4>– Sneha P., via Google</h4>
+    </div>
+  </section>
+  
+  <section class="google-reviews">
+    <h2>We Value Your Feedback</h2>
+    <p>If you've traveled with us, share your experience!</p>
+    <a href="https://search.google.com/local/writereview?placeid=ChIJ2YhndgANCDsRUxG18Ab1q54" target="_blank" class="btn-review">
+      ★ Leave a Google Review
+    </a>
+  </section>
+  
+  
 
   <footer class="footer">
     <div class="footer-box">
@@ -323,5 +352,52 @@
 
 
   </script>
+  <!-- PapaParse CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const seasonalSheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2pf4zEEyMTGzny1jxnuDl8Oar364tuO1K4n4kj4vZRzOpfWzY0um_1TZG6Wo2__Onbh3a0CSY30GD/pub?output=csv";
+
+    Papa.parse(seasonalSheetURL, {
+      download: true,
+      header: true,
+      complete: function (results) {
+        const data = results.data;
+        const container = document.getElementById("best-seasonal-cards");
+        if (!container) return;
+
+        const topRated = data
+          .filter(pkg => parseFloat(pkg["Rating"]) >= 2)
+          .slice(0, 3);
+
+        if (topRated.length === 0) {
+          container.innerHTML = "<p>No top-rated seasonal packages found.</p>";
+          return;
+        }
+
+        topRated.forEach(pkg => {
+          const card = document.createElement("div");
+          card.className = "seasonal-card";
+          card.innerHTML = `
+            <img src="${pkg["Image URL"]}" alt="${pkg["Package Name"]}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+            <h3>${pkg["Package Name"]}</h3>
+            <p>${pkg["Description"]}</p>
+            <p class="price">Price: ${pkg["Price"]}</p>
+            <p class="rating">⭐ ${pkg["Rating"]} / 5</p>
+            <a href="https://wa.me/919961936593?text=Hi%2C%20I'm%20interested%20in%20${encodeURIComponent(pkg["Package Name"])}%20seasonal%20package." target="_blank">Know More</a>
+          `;
+          container.appendChild(card);
+        });
+      },
+      error: (err) => {
+        console.error("Failed to load seasonal packages:", err);
+      }
+    });
+  });
+  </script>
+  <a href="tel:+919961936593" class="call-button" aria-label="Call Us">
+    <span>☎️</span>
+  </a>
 </body>
 </html>

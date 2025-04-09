@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Sriracha&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lilita+One&family=Sriracha&display=swap" rel="stylesheet">
   <meta name="color-scheme" content="light">
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
@@ -217,6 +218,12 @@
     </div>
 
   </section>
+  <section class="seasonal-packages">
+    <h2>Top Seasonal Packages</h2>
+    <div class="seasonal-cards" id="seasonal-cards">
+      <!-- Cards will be dynamically populated here -->
+    </div>
+  </section>
   
   <footer class="footer">
     <div class="footer-box">
@@ -240,5 +247,6 @@
       });
     });
   </script>
+  <script src="script.js"></script>
 </body>
 </html>
