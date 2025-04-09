@@ -1,343 +1,566 @@
 /* Reset & Base */
 * {
 
-  padding: 0;
-  box-sizing: border-box;
-}
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #F2F6FF, #EAD7F1);
-  color: #333;
-  line-height: 1.6;
-}
+  
+
+  body {
+    line-height: 1.6;
+    font-family: "Josefin Sans", sans-serif;color: #333;
+    font-optical-sizing: auto;
+    font-size: 1.2rem;
+    font-style: normal;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  a, button, .card, .destination-card, .btn {
+    transition: all 0.3s ease-in-out;
+  }
+  
 
 
 
 
+  .hero-section {
+    background: url('https://images.unsplash.com/photo-1527437730351-3005e1ce82c3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==') no-repeat center center fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+    z-index: 1;
+    color: white;
+    box-shadow: inset 0 0 0 2000px rgba(106, 79, 185, 0.2);
+    transition: all 0.5s ease;
+  }
 
+  
+  .hero-section h1 {
+    font-family: "Sriracha", cursive;
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid white;
+    width: 0;
+    animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+  @media (max-width: 600px) {
+    .hero-section h1 {
+      font-size: 1.3rem;
+      white-space: nowrap;
+    }
+    .hero-section p {
+      font-size: 1rem;
+    }
+  }
+  
+  
+  .hero-section p {
+    font-size: 1.2rem;
+    color: #f0f0f0;
+    max-width: 700px;
+  }
+  
+  .hero-content {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+  
+  .hero-content.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .hero-section .btn {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-weight: bold;
+    background: white;
+    border-radius: 30px;
+    color: #5a3cdb;
+    transition: 0.3s;
+  }
+  
+  .hero-section .btn:hover {
+    background: #eee;
+  }
+    
+  /* Nav */
+  .navbar {
+    font-family: "Funnel Display", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  
+  .navbar a {
+    color: #6A4FB9;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  
+  .navbar a:hover {
+    color: #B04FAD;
+  }
+  
+  /* Services */
+  .services {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: #F7F8FC;
+  }
+  
+  .services h2 {
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.5rem;
+    color: #6A4FB9;
+    margin-bottom: 2rem;
+  }
+  
+  .gallery h2 {
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.5rem;
+    color: #6A4FB9;
+    margin-bottom: 2rem;
+  }
+  .destinations h2 {
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.5rem;
+    color: #6A4FB9;
+    margin-bottom: 2rem;
+  }
+  
+  .service-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .card {
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+    /* Align images and text in service cards */
+  .service-cards .card {
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text */
+    gap: 1rem; /* Add consistent spacing between image and text */
+    height: 100%; /* Ensure all cards have the same height */
+  }
 
-/* Header */
-.hero-section {
-  background: url('https://images.unsplash.com/photo-1527437730351-3005e1ce82c3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
-  color: white;
-  text-align: center;
-  padding: 3rem 2rem;
-  transition: background 0.4s ease;
-}
+  .service-cards .card img {
+    width: 200px; /* Set a fixed width for all images */
+    height: 200px; /* Set a fixed height for all images */
+    object-fit: contain; /* Ensure the image fits without distortion */
+    border-radius: 8px; /* Optional: Rounded corners */
+  }
 
-.hero-section h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
+  .service-cards .card p {
+    margin: 0; /* Remove default margin */
+    text-align: center;
+    font-size: 1rem; /* Adjust text size */
+    color: #333; /* Set text color */
+    line-height: 1.5; /* Add consistent line height */
+  }
+  .services p {
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    text-align: left;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #444;
+  }
+  
+    
+  /* Destinations */
+  .destinations {
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  
+  .dest-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .destination-card {
+    width: 300px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  
+  .destination-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .destination-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .destination-card h3 {
+    color: #6A4FB9;
+    margin: 1rem 0 0.5rem;
+  }
+  
+  .destination-card p {
+    padding: 0 1rem;
+  }
+  
+  .destination-card a {
+    display: inline-block;
+    margin: 1rem;
+    background: #6A4FB9;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  
+  .destination-card a:hover {
+    background: #A25FDB;
+  }
+  /* Our Fleets */
+  .fleets {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: #f8f6ff;
+  }
+  .fleets h2{
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.5rem;
+    color: #6A4FB9;
+    margin-bottom: 2rem;
+  }
 
-.hero-section .btn {
-  padding: 0.5rem 1rem; /* Increased padding for a larger button */
-  background: #fff;
-  color: #6A4FB9;
-  font-weight: bold;
-  border: none;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
-}
+  .fleet-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
 
-.hero-section .btn:hover {
-  background: #6A4FB9;
-  color: white;
-}
+  .fleet-card {
+    width: 300px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
 
-/* Nav */
-.navbar {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  background-color: #ffffff;
-  padding: 1rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
+  .fleet-card:hover {
+    transform: scale(1.03);
+  }
 
-.navbar a {
-  color: #6A4FB9;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s;
-}
+  .fleet-card img {
 
-.navbar a:hover {
-  color: #B04FAD;
-}
+    width: 210px; /* Set a fixed width for all images */
+    height: 150px; /* Set a fixed height for all images */
+    object-fit: contain; /* Ensure the image fits without distortion */
+    border-radius: 8px; 
 
-/* Services */
-.services {
-  padding: 3rem 2rem;
-  text-align: center;
-  background: #F7F8FC;
-}
+  }
 
-.services h2 {
-  color: #6A4FB9;
-  margin-bottom: 2rem;
-}
+  .fleet-card h3 {
+    color: #6A4FB9;
+    margin: 1rem 0 0.5rem;
+  }
 
-.service-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
+  .fleet-card p {
+    padding: 0 1rem 1rem;
+    color: #444;
+    font-family: 'Poppins', sans-serif;
+  }
+  .careers {
+    color: black;
+    padding: 3rem 2rem;
+    text-align: center;
+    background: #f5f0ff;
+  }
+  
+  .careers h2 {
+    color: #6A4FB9;
+    margin-bottom: 1rem;
+  }
+  
+  .careers p {
+    color: black;
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  #job-listings {
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .job-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 300px;
+    text-align: left;
+    color: black;
+  }
+  
+  .job-card h3 {
+    color: #6A4FB9;
+    margin-bottom: 0.5rem;
+  }
+  
+  .job-card p {
+    color: black;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+  
+  /* Gallery Section */
+  .gallery {
+    padding: 3rem 2rem;
+    background: #FAF5FF;
+    text-align: center;
+  }
 
-.card {
-  background: white;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
+  .gallery-images {
+    display: flex;
+    flex-wrap: wrap; /* Ensure images wrap to the next line if needed */
+    gap: 1rem; /* Add spacing between images */
+    justify-content: center; /* Center the images */
+  }
 
-.card:hover {
-  transform: translateY(-5px);
-}
-
-/* Align images and text in service cards */
-.service-cards .card {
-display: flex; /* Use flexbox for alignment */
-flex-direction: column; /* Stack items vertically */
-align-items: center; /* Center items horizontally */
-text-align: center; /* Center text */
-gap: 1rem; /* Add consistent spacing between image and text */
-height: 100%; /* Ensure all cards have the same height */
-}
-
-.service-cards .card img {
-width: 80px; /* Set a fixed width for all images */
-height: 80px; /* Set a fixed height for all images */
-object-fit: contain; /* Ensure the image fits without distortion */
-border-radius: 8px; /* Optional: Rounded corners */
-}
-
-.service-cards .card p {
-margin: 0; /* Remove default margin */
-font-size: 1rem; /* Adjust text size */
-color: #333; /* Set text color */
-line-height: 1.5; /* Add consistent line height */
-}
-
-/* Destinations */
-.destinations {
-  padding: 3rem 2rem;
-  text-align: center;
-}
-
-.dest-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.destination-card {
-  width: 300px;
-  background: white;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-
-.destination-card:hover {
-  transform: scale(1.03);
-}
-
-.destination-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.destination-card h3 {
-  color: #6A4FB9;
-  margin: 1rem 0 0.5rem;
-}
-
-.destination-card p {
-  padding: 0 1rem;
-}
-
-.destination-card a {
-  display: inline-block;
-  margin: 1rem;
-  background: #6A4FB9;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.destination-card a:hover {
-  background: #A25FDB;
-}
-/* Gallery Section */
-.gallery {
-padding: 3rem 2rem;
-background: #FAF5FF;
-text-align: center;
-}
-
-.gallery-images {
-display: flex;
-flex-wrap: wrap; /* Ensure images wrap to the next line if needed */
-gap: 1rem; /* Add spacing between images */
-justify-content: center; /* Center the images */
-}
-
-.gallery-images img {
-width: 250px; /* Set a fixed width for images */
-height: 180px; /* Set a fixed height for images */
-object-fit: cover; /* Ensure images fit without distortion */
-border-radius: 10px; /* Optional: Add rounded corners */
-}
-.destination-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  max-width: 100%;
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-.destination-content img {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  border-radius: 15px;
-  object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.text-content {
-  width: 100%;
-  max-width: 600px;
-  text-align: center;
-}
-
-.text-content ul {
-  list-style: none;
-  padding: 0;
-  text-align: left;
-  margin: auto;
-  max-width: 300px;
-}
-
-.text-content ul li::before {
-  content: "• ";
-  color: #6A4FB9;
-}
-
-.book-btn {
-  margin-top: 1rem;
-  background: #6A4FB9;
-  color: white;
-  padding: 0.6rem 1.5rem;
-  border-radius: 30px;
-  text-decoration: none;
-  display: inline-block;
-}
-
-@media (min-width: 768px) {
+  .gallery-images img {
+    width: 250px; /* Set a fixed width for images */
+    height: 180px; /* Set a fixed height for images */
+    object-fit: cover; /* Ensure images fit without distortion */
+    border-radius: 10px; /* Optional: Add rounded corners */
+  }
   .destination-content {
-    flex-direction: row;
-    justify-content: space-around;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
   }
-
+  
+  .destination-content img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
   .text-content {
-    text-align: left;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
   }
-}
-
+  
+  .text-content ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin: auto;
+    max-width: 300px;
+  }
+  
+  .text-content ul li::before {
+    content: "• ";
+    color: #6A4FB9;
+  }
+  
+  .book-btn {
+    margin-top: 1rem;
+    background: #6A4FB9;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  @media (min-width: 768px) {
+    .destination-content {
+      flex-direction: row;
+      justify-content: space-around;
+      text-align: left;
+    }
+  
+    .text-content {
+      text-align: left;
+    }
+  }
+  
+  /* Slideshow container */
 .slideshow-container {
   position: relative;
-  width: 100%;
-  max-width: 960px;
+  max-width: 100%;
   margin: auto;
-  height: 540px; /* 960 x 540 = 16:9 */
   overflow: hidden;
-  background-color: #000;
 }
 
+/* Slides */
 .slide {
   display: none;
-  width: 100%;
-  height: 100%;
+  text-align: center;
 }
 
 .slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 70%; /* Reduce the width to 70% of the container */
+  max-width: 500px; /* Set a maximum width for the images */
+  height: auto; /* Maintain the aspect ratio */
+  border-radius: 10px; /* Optional: Add rounded corners */
+  margin: 0 auto; /* Center the image horizontally */
 }
-
 
 /* Navigation buttons */
 .prev, .next {
-position: absolute;
-top: 50%;
-transform: translateY(-50%);
-background-color: rgba(0, 0, 0, 0.5);
-color: white;
-padding: 10px;
-border-radius: 50%;
-cursor: pointer;
-user-select: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
 }
 
 .prev {
-left: 10px;
+  left: 10px;
 }
 
 .next {
-right: 10px;
+  right: 10px;
 }
 
 .prev:hover, .next:hover {
-background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
 }
+  
+  /* Footer */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  /* Footer */
+  .footer {
+    font-family: 'Times New Roman', Times, serif;
+    background: #FAF5FF;
+    color: #000000;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: auto;
+    width: 100%;
+  }
+  
+  .footer-box {
+    max-width: 700px;
+    margin: auto;
+    background: rgba(255, 197, 197, 0.622);
+    padding: 2rem;
+    border-radius: 15px;
+  }
+  
+  .footer a {
+    color: #fc5aa6;
+    text-decoration: none;
+  }
+  @media (prefers-color-scheme: dark) {
+ 
+  
 
-/* Footer */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1;
-}
-
-/* Footer */
-.footer {
-  background: #6A4FB9;
-  color: white;
-  text-align: center;
-  padding: 2rem 1rem;
-  margin-top: auto;
-  width: 100%;
-}
-
-.footer-box {
-  max-width: 700px;
-  margin: auto;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 2rem;
-  border-radius: 15px;
-}
-
-.footer a {
-  color: #FFD6FA;
-  text-decoration: none;
-}
+    .navbar a, 
+    .destination-card h3,
+    .destination-card p, 
+    .card p {
+      color: #000000 !important;
+    }
+  
+    .hero-section .btn {
+      background: white !important;
+      color: #5a3cdb !important;
+    }
+  }
+  
