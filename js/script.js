@@ -80,6 +80,39 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
     
+    const destinationsSheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSkCEV_n2pL0qE-518KGNDxxOaK7CWEIETY4TFckO4wTu-8TeJ0P6aeyfsXUeqOFFrraPmFhOzBjj0N/pub?output=csv"; // Replace with your Google Sheet URL
+
+    Papa.parse(destinationsSheetURL, {
+      download: true,
+      header: true,
+      complete: function (results) {
+        const data = results.data;
+        const container = document.getElementById("dest-cards");
+
+        if (!container) {
+          console.error("Destination cards container not found.");
+          return;
+        }
+
+        data.forEach(destination => {
+          if (!destination["Destination Name"]) return; // Skip empty rows
+
+          const card = document.createElement("div");
+          card.className = "destination-card";
+          card.innerHTML = `
+            <img src="${destination["Image URL"]}" alt="${destination["Destination Name"]}">
+            <h3>${destination["Destination Name"]}</h3>
+            <p>${destination["Description"]}</p>
+            <a href="${destination["WhatsApp Link"]}" target="_blank">Know More</a>
+          `;
+          container.appendChild(card);
+        });
+      },
+      error: function (error) {
+        console.error("Error fetching data from Google Sheets:", error);
+      }
+    });
+    
     emailjs.init("Jl306RdMW69w5gK_-"); // Initialize EmailJS with your user ID
 
     const form = document.getElementById("application-form");
